@@ -1,0 +1,27 @@
+<table>
+  <thead>
+    <tr>
+      <th>Sun</th>
+      <th>Mon</th>
+      <th>Tue</th>
+      <th>Wen</th>
+      <th>Thu</th>
+      <th>Fri</th>
+      <th>Sat</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (week of calendar(); track week) {
+      <tr>
+        @for (day of week.days; track day) {
+          <td [class.disabled]="day.disabled" (click)="select($event, day.value)">
+            <span [class.selected]="day.selected" [class.active]="day.active">
+              {{ day.value | moment: 'ddd DD' }}
+            </span>
+          </td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>

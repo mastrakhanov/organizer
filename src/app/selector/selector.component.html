@@ -1,0 +1,9 @@
+<p>
+  <i (click)="changeMonth($event, -1)">&#8592;</i>
+
+  <span>
+    {{ date() | moment }}
+  </span>
+
+  <i (click)="changeMonth($event, 1)">&#8594;</i>
+</p>

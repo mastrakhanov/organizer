@@ -1,0 +1,30 @@
+<section>
+  <header>
+    Organizer: <strong>{{ date() | moment: 'DD.MM.YYYY' }}</strong>
+    <hr />
+  </header>
+
+  <main>
+    @if (tasks().length) {
+      @for (task of tasks(); track task.id; let index = $index) {
+        <li class="task">
+          <span>
+            <strong>{{ index + 1 }}.</strong>
+            {{ task.title }}
+          </span>
+          <button class="btn btn-primary" (click)="remove($event, task)">Remove</button>
+        </li>
+      }
+    } @else {
+      <p class="text-center">No tasks yet...</p>
+    }
+  </main>
+
+  <footer>
+    <form>
+      <input type="text" [formControl]="titleForm" />
+
+      <button class="btn btn-primary btn-block" [disabled]="titleForm.invalid" (click)="add($event)">Add</button>
+    </form>
+  </footer>
+</section>
